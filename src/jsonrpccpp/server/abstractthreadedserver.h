@@ -14,7 +14,7 @@ public:
 
   virtual bool StartListening();
   virtual bool StopListening();
-
+  virtual void SetWaitTime(uint microseconds);
 protected:
   /**
    * @brief InitializeListener should initialize sockets, file descriptors etc.
@@ -38,6 +38,7 @@ protected:
 
 private:
   bool running;
+  uint waitTimeMicroseconds = 1000;
   std::unique_ptr<std::thread> listenerThread;
   ThreadPool threadPool;
   size_t threads;
